@@ -1,0 +1,16 @@
+.page {
+  padding: 3rem;
+  font-family: system-ui, sans-serif;
+}
+
+.page h1 {
+  margin-bottom: 1rem;
+}
+
+.message {
+  font-size: 1.5rem;
+}
+
+.error {
+  color: #d32f2f;
+}
