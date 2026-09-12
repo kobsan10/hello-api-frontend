@@ -1,9 +1,10 @@
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { UserContext } from "./context/UserContext";
 import { useNavigate } from "react-router-dom";
 
@@ -29,41 +30,59 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex h-dvh justify-center items-center">
-      <Card>
-        <CardContent>
-          <Typography sx={{ marginBottom: "10px" }} variant="h6">
-            Login
+    <Box
+      sx={{
+        display: "flex",
+        minHeight: "100dvh",
+        justifyContent: "center",
+        alignItems: "center",
+        bgcolor: "background.default",
+        px: 2,
+      }}
+    >
+      <Card sx={{ width: 360, maxWidth: "100%" }} elevation={3}>
+        <CardContent sx={{ p: 4 }}>
+          <Typography variant="h5" fontWeight={600} gutterBottom>
+            Welcome back
           </Typography>
-          <div className="mb-3">
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+            Sign in to continue
+          </Typography>
+          <Box
+            component="form"
+            onSubmit={(e) => {
+              e.preventDefault();
+              onLogin();
+            }}
+          >
             <TextField
               id="username"
               name="username"
               label="Username"
               inputRef={username}
+              fullWidth
+              sx={{ mb: 2 }}
             />
-          </div>
-          <div className="mb-3">
             <TextField
               type="password"
               id="password"
               name="password"
               label="Password"
               inputRef={password}
+              fullWidth
+              sx={{ mb: 3 }}
             />
-          </div>
-          <div className="flex justify-center">
-            <Button variant="contained" onClick={onLogin}>
+            <Button type="submit" variant="contained" fullWidth size="large">
               Login
             </Button>
-          </div>
+          </Box>
           {isLogInError && (
-            <div className="mt-3">
-              <Typography color="error">{loginErrorMsg}</Typography>
-            </div>
+            <Typography color="error" variant="body2" sx={{ mt: 2 }}>
+              {loginErrorMsg}
+            </Typography>
           )}
         </CardContent>
       </Card>
-    </div>
+    </Box>
   );
 }
