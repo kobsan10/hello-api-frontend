@@ -12,7 +12,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Home() {
   const navigate = useNavigate();
-  const { user, isLoggedIn, isInitializing } = useContext(UserContext);
+  const { isLoggedIn, isInitializing, isAdmin } = useContext(UserContext);
   useEffect(() => {
     if (!isLoggedIn && !isInitializing) {
       navigate("/login");
@@ -35,6 +35,16 @@ export default function Home() {
           >
             Item
           </Button>
+          {isAdmin && (
+            <Button color="inherit" onClick={() => navigate("/users")}>
+              User
+            </Button>
+          )}
+          {isAdmin && (
+            <Button color="inherit" onClick={() => navigate("/audit")}>
+              Audit Log
+            </Button>
+          )}
           <Button
             color="inherit"
             onClick={async () => {

@@ -2,6 +2,9 @@ import { createContext, useEffect, useRef, useState } from "react";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+// Matches ADMIN_ID on the backend: the env-configured admin is not a database user.
+const ADMIN_ID = "-1";
+
 export const UserContext = createContext();
 
 export function UserProvider({ children }) {
@@ -74,6 +77,7 @@ export function UserProvider({ children }) {
         isLogInError,
         loginErrorMsg,
         isInitializing,
+        isAdmin: user?.id === ADMIN_ID,
       }}
     >
       {children}
