@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const API_URL = 'http://localhost:3000/api/hello'
+const API_URL = `${import.meta.env.VITE_API_URL}/api/hello`
 
 export default function TestApi() {
   const [message, setMessage] = useState('')
